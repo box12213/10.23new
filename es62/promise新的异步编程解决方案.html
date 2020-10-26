@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+
+</head>
+<body>
+    <script>
+        //解决回调地狱问题（回调嵌套回调）
+        //实例化promise对象
+         const p =new Promise(function(resolve,reject){     //里面封装异步操作
+            setTimeout(function(){
+
+                // let data='数据库的用户数据';
+
+                // //resolve
+                // resolve(data);
+                // //调用resolve之后 对象p的状态会变成成功
+
+                let err ='数据调取失败';
+                reject(err);    //调取reject 对象P的状态会变成失败
+
+            },1000);
+
+
+
+
+         });
+
+
+         //调用promise对象的 then方法 (then接收两个参数 成功和失败两个 各有一个形参)
+         p.then(function(value){      //成功的参数  怎样判定为成功啊  调用上面的resolve即为成功
+            console.log(value);      //上面调取resolve就会执行then方法中的第一个回调函数代码块
+
+
+
+         },function(reson){        ///失败的参数   调用上面的reject即为失败
+           console.log(reson);     //上面调取reject就会执行then的第二个回调函数代码块
+
+
+         })
+         //这样就将异步任务封装在promise的对象里面   通过resolve和reject两个函数 来改变它的状态 就分别调用then里面的两个回调语句
+
+        
+
+    </script>
+
+
+
+    
+</body>
+</html>
