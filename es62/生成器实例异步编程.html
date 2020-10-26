@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//异步编程 文件操作 网络操作（Ajax request）数据库操作
+//1秒后控制台输出1 2秒后输出22 3秒1后输出333 一直延续到9秒
+//回调地狱 回调里面套回调 
+//     setTimeout(() => {
+//         console.log(1);
+//         setTimeout(()=>{
+//         console.log(22);
+//         setTimeout(()=>{
+//             console.log(333);
+//          },3000);
+//     },2000);
+// },1000);
+
+//用生成器函数做上面的玩意 解决回调地狱的麻烦
+function one(){
+    setTimeout(()=>{
+        console.log(1);
+        iteratorn.next();
+
+ },1000)
+}
+
+//第二个异步任务
+function two(){
+    setTimeout(()=>{
+        console.log(22);
+        iteratorn.next();
+
+ },2000)
+}
+
+function three(){
+    setTimeout(()=>{
+        console.log(333);
+        iteratorn.next();
+
+ },3000)
+}
+
+function four(){
+    setTimeout(()=>{
+        console.log(4444);
+        iteratorn.next();
+
+ },4000)
+}
+
+function five(){
+    setTimeout(()=>{
+        console.log(55555);
+        iteratorn.next();
+
+ },5000)
+}
+
+//生成器函数
+function * gen(){
+    yield one();
+    yield two();
+    yield three();
+    yield four();
+    yield five();
+
+
+}
+//调用生成器函数
+let iteratorn =gen();
+iteratorn.next();
+
+
+</script>
+    
+</body>
+</html>
